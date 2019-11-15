@@ -1,17 +1,27 @@
 class HomeController < ApplicationController
   def index
-    key = params[:key]
+    key = get_key()
 
-    piano_chords = PianoChords.new()
+    if key.class == NilClass
 
-    piano_chords = piano_chords.get_sofas_and_invertions(key)
+       render json: {:error => "Bad Request"}, status: 400
 
-    render json: {:message => piano_chords}, status: 200
+    else
+
+      piano_chords = PianoChords.new()
+
+      piano_chords = piano_chords.get_sofas_and_invertions(key)
+
+      render json: {:message => piano_chords}, status: 200
+    end
+
+
+
   end
 
   def chords_and_sofas
     #code
-    key = params[:key]
+    key = get_key()
 
     piano_chords = PianoChords.new()
 
@@ -21,7 +31,7 @@ class HomeController < ApplicationController
   end
 
   def harmonized_chords
-    key = params[:key]
+    key = get_key()
 
     piano_chords = Harmonization.new()
 
@@ -42,5 +52,21 @@ class HomeController < ApplicationController
     render json: {:message => piano_chords}, status: 200
     #code
   end
+
+  def test
+
+    key = get_key()
+
+    render json: {:message => key}
+    #code
+  end
+
+  private
+    def get_key
+      key = params[:key]
+      key = key.split("")[0] + "#" if key.length > 1 && key.split("")[1].downcase != "b"
+      key
+      #code
+    end
 
 end
