@@ -33,11 +33,10 @@ class HomeController < ApplicationController
   def harmonized_chords
     key = get_key()
 
-    piano_chords = Harmonization.new()
-
-    piano_chords = piano_chords.show_me_harmonized_chords_of(key)
-
-    render json: {:message => piano_chords}, status: 200
+    render json: { message: Harmonization.new().show_me_harmonized_chords_of(key),
+                   chords_and_sofas: PianoChords.new().get_sofas_and_invertions(key),
+                   sofas: PianoChords.new().get_sofas_of_key(key)
+                 }, status: 200
     #code
   end
 
