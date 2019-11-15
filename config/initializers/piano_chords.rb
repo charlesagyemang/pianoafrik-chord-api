@@ -649,6 +649,8 @@ class Harmonization
 		# 2 Chord 7th ( 1st Inversion )
 		ree_options = [
 			form_body(piano_chords, 2, 1, "Re"),
+			form_body(piano_chords, 5, 1, "So"),
+			form_body(piano_chords, 7, 2, "Ti")
 		]
 		ret[2] = form_option(ree_options, "Re")
 
