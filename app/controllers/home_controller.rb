@@ -61,6 +61,11 @@ class HomeController < ApplicationController
     #code
   end
 
+  def ping
+    #code
+    render json: {:message => "Welcome"}
+  end
+
   private
     def get_key
       key = params[:key]
