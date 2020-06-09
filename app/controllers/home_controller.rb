@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     key = get_key()
 
@@ -64,6 +65,8 @@ class HomeController < ApplicationController
     #code
     render json: {:message => "Welcome"}
   end
+
+
 
   private
     def get_key
