@@ -7,7 +7,7 @@ class UssdController < ApplicationController
 
     if incoming_request[:mode] === "start"
       resp = {
-        mode: "input",
+        mode: "more",
         text: "Welcome to Apomden App.\n Choose an option: \n1. Balance Enquiry \n2. Send Money. \n 3. Contact Us.",
         customData: "Step 1",
       }
@@ -15,19 +15,19 @@ class UssdController < ApplicationController
       case incoming_request[:customData]
       when "Step 1"
         resp = {
-          mode: "input",
+          mode: "more",
           text: "Step 2. Choose an option: \n1. Own Number \n2. Another Number. \n 3. Other.",
           customData: "Step 2",
         }
       when "Step 2"
         resp = {
-          mode: "input",
+          mode: "more",
           text: "Step 3. Choose an option: \n1. Own Number \n2. Another Number. \n 3. Other.",
           customData: "Step 3",
         }
       when "Step 3"
         resp = {
-          mode: "input",
+          mode: "more",
           text: "Step 4. Choose an option: \n1. Own Number \n2. Another Number. \n 3. Other..",
           customData: "Step 4",
         }
